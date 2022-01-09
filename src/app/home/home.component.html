@@ -1,0 +1,59 @@
+<main class="px-8 md:px-14 py-14 text-[14px] relative">
+  <div class="absolute left-8 top-32 md:left-auto md:right-14 md:top-14">
+    <div
+      class="dropdown-btn w-64 shadow-md rounded bg-white p-4 flex justify-between"
+      (click)="toggleFilter()"
+    >
+      <p class="dropbtn">Filter by Region</p>
+      <fa-icon class="mr-1" [icon]="faChevronDown"></fa-icon>
+    </div>
+
+    <div
+      *ngIf="shown"
+      class="dropdown-select w-64 shadow-md rounded bg-white p-4 mt-4 space-y-2"
+    >
+      <p
+        class="cursor-pointer"
+        *ngFor="let region of regions"
+        (click)="filterRegion(region)"
+      >
+        {{ region }}
+      </p>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div
+    class="card-container mt-40 md:mt-28 w-full grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-20 justify-center"
+  >
+    <div
+      class="card rounded-md overflow-hidden shadow-md text-left bg-white md:w-72"
+      *ngFor="let country of countries"
+    >
+      <figure class="w-full md:h-60">
+        <a routerLink="/detail/{{ country.name }}">
+          <img
+            src="{{ country.flag }}"
+            alt="{{ country.name }}"
+            class="flag object-cover h-full"
+          />
+        </a>
+      </figure>
+      <div
+        id="{{ country.name }}"
+        class="country-detail pt-4 pb-4 px-5 h-44 md:h-32"
+      >
+        <a routerLink="/detail/{{ country.name }}">
+          <p class="font-semibold mb-4">{{ country.name }}</p>
+        </a>
+
+        <span class="font-semibold mb-2">Population: </span
+        ><span class="mb-2">{{ country.population }}</span> <br />
+        <span class="font-semibold mb-2">Region: </span
+        ><span class="mb-2">{{ country.region }}</span> <br />
+        <span class="font-semibold">Capital: </span
+        ><span>{{ country.capital }}</span>
+      </div>
+    </div>
+  </div>
+</main>
