@@ -12,7 +12,14 @@ export class HomeComponent implements OnInit {
   faChevronDown = faChevronDown;
   shown: boolean = false;
   countries: Country[] = [];
-  regions: string[] = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+  regions: string[] = [
+    'All',
+    'Africa',
+    'Americas',
+    'Asia',
+    'Europe',
+    'Oceania',
+  ];
   filteredCountry?: Country[];
   cachedCountry: Country[] = [];
 

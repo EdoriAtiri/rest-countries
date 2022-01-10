@@ -76,8 +76,8 @@
         </span>
 
         <a
-          (click)="gotoItems(border.name)"
           *ngFor="let border of borderCountries"
+          routerLink="/detail/{{ border.name }}"
           class="border mr-2 md:mr-0 md:ml-2 p-2 shadow rounded"
         >
           {{ border.name }}

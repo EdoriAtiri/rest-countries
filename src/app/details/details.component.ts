@@ -13,6 +13,7 @@ export class DetailsComponent implements OnInit {
   country!: any;
   borderCountry: any;
   borderCountries: any[] = [];
+  loadUserDetail: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,13 +23,18 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCountry();
+    this.route.queryParams.subscribe((queryParams) => {
+      // do something with the query params
+    });
+    this.route.params.subscribe((routeParams) => {
+      this.getCountry(routeParams['name']);
+    });
   }
 
-  getCountry(): void {
-    const countryName = this.route.snapshot.paramMap.get('name');
+  getCountry(query: any): void {
+    // const countryName = this.route.snapshot.paramMap.get('name');
     this.countryService
-      .getCountry(countryName)
+      .getCountry(query)
       .subscribe(
         (country) => (
           (this.country = country),
@@ -48,7 +54,8 @@ export class DetailsComponent implements OnInit {
     this.location.back();
   }
 
-  gotoItems(country: string) {
+  // Previous method of making routes reload on navigation, it worked but created issues withback button
+  /* gotoItems(country: string) {
     const countryName = country;
     this.countryService
       .getCountry(countryName)
@@ -60,5 +67,5 @@ export class DetailsComponent implements OnInit {
         )
       );
     this.router.navigate([`/detail/${countryName}`]);
-  }
+  } */
 }
