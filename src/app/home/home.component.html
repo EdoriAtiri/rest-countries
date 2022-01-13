@@ -1,7 +1,13 @@
-<main class="px-8 md:px-14 py-14 text-[14px] relative">
-  <div class="absolute left-8 top-32 md:left-auto md:right-14 md:top-14">
+<main
+  class="px-8 md:px-14 pt-6 pb-14 text-[14px] relative dark:bg-darkblue-200 dark:text-white"
+>
+  <app-search
+    class="md:absolute md:left-14 md:right-auto md:top-14"
+  ></app-search>
+
+  <div class="absolute z-10 left-8 top-32 md:left-auto md:right-14 md:top-14">
     <div
-      class="dropdown-btn w-64 shadow-md rounded bg-white p-4 flex justify-between"
+      class="dropdown-btn w-64 shadow-md rounded bg-white dark:bg-darkblue-100 p-4 flex justify-between"
       (click)="toggleFilter()"
     >
       <p class="dropbtn">Filter by Region</p>
@@ -10,7 +16,7 @@
 
     <div
       *ngIf="shown"
-      class="dropdown-select w-64 shadow-md rounded bg-white p-4 mt-4 space-y-2"
+      class="dropdown-select w-64 shadow-md rounded bg-white dark:bg-darkblue-100 p-4 mt-4 space-y-2"
     >
       <p
         class="cursor-pointer"
@@ -26,8 +32,22 @@
   <div
     class="card-container mt-40 md:mt-28 w-full grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-20 justify-center"
   >
+    <!-- Error Message -->
     <div
-      class="card rounded-md overflow-hidden shadow-md text-left bg-white md:w-72"
+      *ngIf="errorMessage"
+      class="grid place-items-center space-y-14 mt-32 md:col-span-4"
+    >
+      <h2 class="font-extrabold text-2xl">Error</h2>
+      <img
+        src="../../assets/maps-and-flags-surrender-svgrepo-com.svg"
+        alt="surrender flag"
+        class="w-32"
+      />
+      <h4 class="font-semibold">{{ errorMessage.message }}</h4>
+    </div>
+
+    <div
+      class="card rounded-md overflow-hidden shadow-md text-left bg-white dark:bg-darkblue-100 md:w-72"
       *ngFor="let country of countries"
     >
       <figure class="w-full md:h-60">

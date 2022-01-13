@@ -1,4 +1,15 @@
-<div class="font-nunito bg-lightgray">
-  <app-header class=""></app-header>
+<div
+  class="font-nunito bg-lightgray dark:bg-darkblue-200 dark:text-white h-screen"
+  [class.dark]="themeService.darkMode"
+>
+  <header
+    class="bg-white dark:bg-darkblue-100 dark:text-white py-8 flex justify-between font-semibold text-[14px] shadow px-8 md:px-14"
+  >
+    <h1 class="font-extrabold">Where in the world?</h1>
+    <button (click)="themeService.toggle()">
+      <fa-icon class="mr-1" [icon]="faMoon"></fa-icon> Dark Mode
+    </button>
+  </header>
+
   <router-outlet></router-outlet>
 </div>

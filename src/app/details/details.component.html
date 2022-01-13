@@ -1,11 +1,11 @@
 <div
   *ngFor="let ctry of country"
   id="detail"
-  class="px-8 md:px-14 py-8 h-screen"
+  class="px-8 md:px-14 py-8 h-full dark:bg-darkblue-200 dark:text-white"
 >
   <button
     (click)="goBack()"
-    class="py-2 px-8 shadow-xl rounded border mb-8 bg-white"
+    class="py-2 px-8 shadow-xl rounded border mb-8 bg-white dark:bg-darkblue-100"
   >
     <fa-icon class="mr-3" [icon]="faArrowLeft"></fa-icon>Back
   </button>
@@ -21,7 +21,7 @@
     </figure>
 
     <!-- Details -->
-    <div id="country-details" class="md:w-1/2 md:h-96 py-8 md:px-2">
+    <div id="country-details" class="md:w-1/2 md:h-64 py-8 md:px-2">
       <h2 class="font-semibold mb-8 text-2xl">{{ ctry.name }}</h2>
 
       <div class="md:flex justify-between items-start">
@@ -78,11 +78,45 @@
         <a
           *ngFor="let border of borderCountries"
           routerLink="/detail/{{ border.name }}"
-          class="border mr-2 md:mr-0 md:ml-2 p-2 shadow rounded"
+          class="border mr-2 md:mr-0 md:ml-2 p-2 shadow rounded dark:bg-darkblue-100"
         >
           {{ border.name }}
         </a>
+        <!-- Border Error Message -->
+
+        <span *ngIf="borderErrorMessage" class="italic ml-2">
+          Error {{ borderErrorMessage.message }}
+        </span>
+        <!-- Loading animation -->
+        <!-- <div [hidden]="borderCountries || borderErrorMessage" class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div> -->
+        <!-- loading animation -->
       </div>
     </div>
   </div>
+</div>
+
+<!-- Error Message -->
+<div
+  *ngIf="errorMessage"
+  class="grid place-items-center space-y-14 pt-32 bg-white dark:text-white dark:bg-darkblue-200"
+>
+  <h2 class="font-extrabold text-2xl">Error</h2>
+  <img
+    src="../../assets/maps-and-flags-surrender-svgrepo-com.svg"
+    alt="surrender flag"
+    class="w-32"
+  />
+  <h4 class="font-semibold">{{ errorMessage.message }}</h4>
+</div>
+
+<!-- Loading Spinner -->
+<div class="w-full flex items-center justify-center">
+  <app-loading-animation
+    class="mt-32"
+    [hidden]="country || errorMessage"
+  ></app-loading-animation>
 </div>

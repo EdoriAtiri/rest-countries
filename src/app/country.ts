@@ -5,3 +5,7 @@ export interface Country {
   capital: string;
   flag: string;
 }
+
+export interface OneCountry {
+  name: string;
+}
