@@ -1,4 +1,7 @@
-<div id="search-component" class="w-full md:w-[32rem] dark:bg-darkblue-100">
+<div
+  id="search-component"
+  class="w-full md:w-80 lg:w-[32rem] dark:bg-darkblue-100"
+>
   <div
     class="w-full px-4 h-[53px] flex justify-around align-center shadow-md border rounded"
   >
@@ -24,7 +27,7 @@
       <a
         *ngIf="i < 10"
         routerLink="/detail/{{ country.name }}"
-        class="z-20 border border-t-0 inline-block w-full md:w-[32rem] p-4 rounded shadow hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black"
+        class="z-20 border border-t-0 inline-block w-full md:w-[32rem] p-4 rounded shadow bg-white dark:bg-darkblue-100 hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:bg-darkblue-100 focus:text-white dark:focus:bg-white dark:focus:text-black"
         >{{ country.name }}</a
       >
     </li>

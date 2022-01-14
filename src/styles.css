@@ -14,3 +14,10 @@
     @apply font-semibold;
   }
 }
+
+html,
+body {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+}
