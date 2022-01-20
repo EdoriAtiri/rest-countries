@@ -4,14 +4,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Country, OneCountry } from '../country';
 import { Countries } from '../mock-countries';
 
-import { catchError, Observable, of, retry, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, EMPTY, Observable, of, retry, throwError } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountryService {
   countriesUrl: string = 'https://restcountries.com/v2/';
+  allCountries: any;
+  Country: any = [];
   constructor(private http: HttpClient) {}
 
   private handleError(error: HttpErrorResponse) {
@@ -34,8 +36,16 @@ export class CountryService {
   }
 
   getCountries(): Observable<Country[]> {
-    const countries = of(Countries);
-    return countries;
+    if (this.allCountries) {
+      console.log('returning value');
+      return this.allCountries;
+    }
+    console.log('do request again');
+    const allCountries = `${this.countriesUrl}all?fields=name,population,region,flag,capital`;
+    this.allCountries = this.http
+      .get<Country[]>(allCountries)
+      .pipe(shareReplay(1), catchError(this.handleError));
+    return this.allCountries;
   }
 
   getCountry(country: any): Observable<any> {
@@ -67,14 +77,20 @@ export class CountryService {
       );
   }
 
-  /* Previous Method
+  /* Previous Methods
    searchCountries(): Observable<OneCountry[]> {
      const url = `${this.countriesUrl}all?fields=name`;
      return this.http.get<Country[]>(url);
    } */
+  /*  getCountries(): Observable<Country[]> {
+    const allCountries = `${this.countriesUrl}all?fields=name,population,region,flag,capital`;
+    return this.http
+      .get<Country[]>(allCountries)
+      .pipe(retry(3), catchError(this.handleError));
+} */
 
-  // getCountries(): Observable<Country[]> {
-  //   const allCountries = `${this.countriesUrl}all?fields=name,population,region,flag,capital`;
-  //   return this.http.get<Country[]>(allCountries);
-  // }
+  /*  getCountries(): Observable<Country[]> {
+    const countries = of(Countries);
+    return countries;
+  } */
 }

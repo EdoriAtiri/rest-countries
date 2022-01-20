@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   loadUserDetail: any;
   errorMessage: any;
   borderErrorMessage: any;
+  loading!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,11 +35,13 @@ export class DetailsComponent implements OnInit {
   }
 
   getCountry(query: any): void {
+    this.loading = true;
     // const countryName = this.route.snapshot.paramMap.get('name');
     this.countryService.getCountry(query).subscribe({
       next: (country) => (
         (this.country = country),
-        (this.borderCountry = this.country[0].borders.join(',')),
+        (this.borderCountry = this.country[0].borders.join()),
+        (this.loading = false),
         this.getBorderCountries()
       ),
       error: (errmessage) => (this.errorMessage = errmessage),

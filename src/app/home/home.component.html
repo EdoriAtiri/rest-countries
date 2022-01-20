@@ -14,20 +14,30 @@
       <fa-icon class="mr-1" [icon]="faChevronDown"></fa-icon>
     </div>
 
-    <div
+    <ul
       *ngIf="shown"
       class="dropdown-select w-64 shadow-md rounded bg-white dark:bg-darkblue-100 p-4 mt-4 space-y-2"
     >
-      <p
-        class="cursor-pointer"
+      <li
+        class="cursor-pointer bg-white dark:bg-darkblue-100 hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:bg-darkblue-100 focus:text-white dark:focus:bg-white dark:focus:text-black"
         *ngFor="let region of regions"
         (click)="filterRegion(region)"
       >
         {{ region }}
-      </p>
-    </div>
+      </li>
+    </ul>
   </div>
 
+  <!-- <div
+    *ngIf="loading"
+    class="w-full dark:bg-darkblue-200 flex items-center justify-center"
+  >
+    <app-loading-animation></app-loading-animation>
+  </div> -->
+  <!-- Loading Animation -->
+  <div *ngIf="loading" class="w-full flex justify-center mt-48">
+    <app-loading-animation class=""></app-loading-animation>
+  </div>
   <!-- CARDS -->
   <div
     class="card-container mt-48 md:mt-28 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 md:gap-20 justify-center"

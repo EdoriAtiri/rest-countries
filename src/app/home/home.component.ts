@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   filteredCountry?: Country[];
   cachedCountry: Country[] = [];
   errorMessage: any;
+  loading: boolean = true;
 
   constructor(private countryService: CountryService) {}
 
@@ -33,10 +34,14 @@ export class HomeComponent implements OnInit {
   getCountries(): void {
     this.countryService.getCountries().subscribe({
       next: (countries) => (
-        (this.countries = countries), (this.cachedCountry = countries)
+        (this.countries = countries),
+        (this.loading = false),
+        (this.cachedCountry = countries)
       ),
       error: (errmessage) => (
-        (this.errorMessage = errmessage), console.log(errmessage)
+        (this.errorMessage = errmessage),
+        console.log(errmessage),
+        (this.loading = false)
       ),
     });
   }

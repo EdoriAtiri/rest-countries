@@ -3,7 +3,7 @@
   class="w-full md:w-80 lg:w-[32rem] dark:bg-darkblue-100"
 >
   <div
-    class="w-full px-4 h-[53px] flex justify-around align-center shadow-md border rounded"
+    class="w-full px-4 h-[53px] flex justify-around align-center shadow-md border dark:border-none rounded focus-within:border-darkblue-200"
   >
     <figure class="w-1/6 grid place-items-center">
       <fa-icon
@@ -11,8 +11,9 @@
         [icon]="faSearch"
       ></fa-icon>
     </figure>
-
+    <label for="search_button" Search Button></label>
     <input
+      id="search_button"
       class="w-5/6 h-full focus:outline-none dark:bg-darkblue-100"
       placeholder="Search for a country..."
       #searchBox

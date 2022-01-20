@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.countries$ = this.searchTerms.pipe(
       // Wait 300ms after each keystroke before considering search term
-      debounceTime(300),
+      debounceTime(150),
       // ignore new term if same as previous term
       distinctUntilChanged(),
 
