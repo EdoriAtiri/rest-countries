@@ -13,6 +13,7 @@
     </figure>
     <label for="search_button" Search Button></label>
     <input
+      autocapitalize="off"
       id="search_button"
       class="w-5/6 h-full focus:outline-none dark:bg-darkblue-100"
       placeholder="Search for a country..."
@@ -28,7 +29,7 @@
       <a
         *ngIf="i < 10"
         routerLink="/detail/{{ country.name }}"
-        class="z-20 border border-t-0 inline-block w-full md:w-[32rem] p-4 rounded shadow bg-white dark:bg-darkblue-100 hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:bg-darkblue-100 focus:text-white dark:focus:bg-white dark:focus:text-black"
+        class="z-20 border border-t-0 inline-block w-full md:w-[32rem] p-4 rounded shadow bg-white dark:bg-darkblue-100 hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:bg-darkblue-100 focus:text-white dark:focus:bg-white dark:focus:text-black transition-colors"
         >{{ country.name }}</a
       >
     </li>

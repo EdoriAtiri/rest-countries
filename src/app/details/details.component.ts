@@ -17,6 +17,8 @@ export class DetailsComponent implements OnInit {
   errorMessage: any;
   borderErrorMessage: any;
   loading!: boolean;
+  noBorders!: boolean;
+  loadingBorderComplete!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +39,44 @@ export class DetailsComponent implements OnInit {
   getCountry(query: any): void {
     this.loading = true;
     // const countryName = this.route.snapshot.paramMap.get('name');
+    this.countryService.getCountry().subscribe({
+      next: (country) => (
+        (this.country = country.filter((c) => c.name === query)),
+        console.log(this.country),
+        (this.loading = false),
+        this.getBorderCountries()
+      ),
+      error: (errmessage) => (this.errorMessage = errmessage),
+    });
+  }
+
+  getBorderCountries(): void {
+    this.borderCountries = [];
+    this.loadingBorderComplete = false;
+    if (this.country[0].borders) {
+      this.borderCountry = this.country[0].borders.join();
+      this.countryService.getBorderCountries(this.borderCountry).subscribe({
+        next: (borderCountries) => (
+          (this.borderCountries = borderCountries),
+          (this.loadingBorderComplete = true)
+        ),
+        error: (errmessage) => (this.borderErrorMessage = errmessage),
+      });
+    } else {
+      this.noBorders = true;
+      // Not needed, fulfilling all righteousness
+      this.loadingBorderComplete = false;
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  /* Old Ways
+  getCountry(query: any): void {
+    this.loading = true;
+    // const countryName = this.route.snapshot.paramMap.get('name');s
     this.countryService.getCountry(query).subscribe({
       next: (country) => (
         (this.country = country),
@@ -46,18 +86,7 @@ export class DetailsComponent implements OnInit {
       ),
       error: (errmessage) => (this.errorMessage = errmessage),
     });
-  }
-
-  getBorderCountries(): void {
-    this.countryService.getBorderCountries(this.borderCountry).subscribe({
-      next: (borderCountries) => (this.borderCountries = borderCountries),
-      error: (errmessage) => (this.borderErrorMessage = errmessage),
-    });
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
+  } */
 
   // Previous method of making routes reload on navigation, it worked but created issues withback button
   /* gotoItems(country: string) {

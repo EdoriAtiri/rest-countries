@@ -5,7 +5,7 @@ import { Country, OneCountry } from '../country';
 import { Countries } from '../mock-countries';
 
 import { catchError, EMPTY, Observable, of, retry, throwError } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { filter, map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,7 @@ export class CountryService {
   countriesUrl: string = 'https://restcountries.com/v2/';
   allCountries: any;
   Country: any = [];
+  single!: Observable<Country[]>;
   constructor(private http: HttpClient) {}
 
   private handleError(error: HttpErrorResponse) {
@@ -36,23 +37,30 @@ export class CountryService {
   }
 
   getCountries(): Observable<Country[]> {
+    // return valu;
     if (this.allCountries) {
-      console.log('returning value');
       return this.allCountries;
     }
-    console.log('do request again');
-    const allCountries = `${this.countriesUrl}all?fields=name,population,region,flag,capital`;
+
+    //  carry out request again
+    const allCountriesUrl = `${this.countriesUrl}all`;
     this.allCountries = this.http
-      .get<Country[]>(allCountries)
+      .get<Country[]>(allCountriesUrl)
       .pipe(shareReplay(1), catchError(this.handleError));
     return this.allCountries;
   }
 
-  getCountry(country: any): Observable<any> {
-    const url = `${this.countriesUrl}name/${country}?fullText=true`;
-    return this.http
-      .get<Country[]>(url)
-      .pipe(retry(3), catchError(this.handleError));
+  getCountry(): Observable<Country[]> {
+    // return value
+    if (this.allCountries) {
+      return this.allCountries;
+    }
+    //  carry out request again
+    const allCountriesUrl = `${this.countriesUrl}all`;
+    this.allCountries = this.http
+      .get<Country[]>(allCountriesUrl)
+      .pipe(shareReplay(1), catchError(this.handleError));
+    return this.allCountries;
   }
 
   getBorderCountries(countryCode: string): Observable<Country[]> {
@@ -78,6 +86,13 @@ export class CountryService {
   }
 
   /* Previous Methods
+ getCountry(country: any): Observable<any> {
+    const url = `${this.countriesUrl}name/${country}?fullText=true`;
+    return this.http
+      .get<Country[]>(url)
+      .pipe(retry(3), catchError(this.handleError));
+  }
+
    searchCountries(): Observable<OneCountry[]> {
      const url = `${this.countriesUrl}all?fields=name`;
      return this.http.get<Country[]>(url);

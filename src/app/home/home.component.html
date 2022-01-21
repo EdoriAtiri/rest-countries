@@ -16,10 +16,10 @@
 
     <ul
       *ngIf="shown"
-      class="dropdown-select w-64 shadow-md rounded bg-white dark:bg-darkblue-100 p-4 mt-4 space-y-2"
+      class="dropdown-select w-64 shadow-md rounded bg-white dark:bg-darkblue-100 py-4 mt-4 space-y-2"
     >
       <li
-        class="cursor-pointer bg-white dark:bg-darkblue-100 hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:bg-darkblue-100 focus:text-white dark:focus:bg-white dark:focus:text-black"
+        class="cursor-pointer px-4 bg-white dark:bg-darkblue-100 hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:bg-darkblue-100 focus:text-white dark:focus:bg-white dark:focus:text-black transition-colors w-full"
         *ngFor="let region of regions"
         (click)="filterRegion(region)"
       >
@@ -57,7 +57,7 @@
     </div>
 
     <div
-      class="card rounded-md overflow-hidden shadow-md text-left bg-white dark:bg-darkblue-100 md:w-72"
+      class="card rounded-md overflow-hidden shadow-md text-left bg-white dark:bg-darkblue-100 md:w-72 hover:shadow-2xl transition-shadow"
       *ngFor="let country of countries"
     >
       <figure class="w-full md:h-60">

@@ -4,7 +4,7 @@
 >
   <button
     (click)="goBack()"
-    class="py-2 px-8 shadow-xl rounded border dark:border-none mb-8 bg-white dark:bg-darkblue-100"
+    class="py-2 px-8 shadow-xl rounded border dark:border-none mb-8 dark:bg-darkblue-100 min-w-max hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-darkblue-100 transition-colors"
   >
     <fa-icon class="mr-3" [icon]="faArrowLeft"></fa-icon>Back
   </button>
@@ -21,9 +21,9 @@
     <!-- Flag -->
     <figure
       *ngIf="!loading"
-      class="flag md:w-1/2 md:h-96 h-60 overflow-hidden mb-8 md:mb-0 object-cover"
+      class="flag md:w-1/2 md:h-96 h-60 overflow-hidden mb-8 md:mb-0 object-cover shadow-2xl"
     >
-      <img src="{{ ctry.flags.svg }}" alt="" />
+      <img src="{{ ctry.flag }}" alt="" />
     </figure>
 
     <!-- Details -->
@@ -80,11 +80,20 @@
         <span class="title block md:inline-block mb-3 md:mb-0"
           >Border Countries:
         </span>
-        <ul class="flex md:justify-start gap-y-4 flex-wrap">
+        <span *ngIf="noBorders" class="ml-2 italic"
+          >This Country has no border nations</span
+        >
+        <span *ngIf="!loadingBorderComplete && !noBorders" class="ml-2 italic"
+          >Loading Borders...</span
+        >
+        <ul
+          *ngIf="!noBorders && loadingBorderComplete"
+          class="flex md:justify-start gap-y-4 flex-wrap"
+        >
           <li class="" *ngFor="let border of borderCountries">
             <a
               routerLink="/detail/{{ border.name }}"
-              class="border mr-2 md:mr-0 md:ml-2 p-2 shadow rounded dark:bg-darkblue-100 min-w-max hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-darkblue-100"
+              class="border mr-2 md:mr-0 md:ml-2 p-2 shadow rounded dark:bg-darkblue-100 min-w-max hover:bg-darkblue-100 hover:text-white dark:hover:bg-white dark:hover:text-darkblue-100 transition-colors"
             >
               {{ border.name }}
             </a>
