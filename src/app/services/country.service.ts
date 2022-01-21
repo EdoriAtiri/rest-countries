@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Country, OneCountry } from '../country';
-import { Countries } from '../mock-countries';
 
 import { catchError, EMPTY, Observable, of, retry, throwError } from 'rxjs';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
