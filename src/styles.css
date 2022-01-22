@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 :root {
   --homepage: 14px;
   --detail: 16px;
@@ -16,7 +17,7 @@
 
 html,
 body {
-  min-height: 100vh;
+  max-height: fit-content;
   height: auto;
   margin: 0;
 }

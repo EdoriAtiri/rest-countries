@@ -42,8 +42,8 @@ export class DetailsComponent implements OnInit {
     this.countryService.getCountry().subscribe({
       next: (country) => (
         (this.country = country.filter((c) => c.name === query)),
-        console.log(this.country),
         (this.loading = false),
+        console.log(this.country),
         this.getBorderCountries()
       ),
       error: (errmessage) => (this.errorMessage = errmessage),
@@ -53,7 +53,7 @@ export class DetailsComponent implements OnInit {
   getBorderCountries(): void {
     this.borderCountries = [];
     this.loadingBorderComplete = false;
-    if (this.country[0].borders) {
+    if (this.country[0].borders.length) {
       this.borderCountry = this.country[0].borders.join();
       this.countryService.getBorderCountries(this.borderCountry).subscribe({
         next: (borderCountries) => (
