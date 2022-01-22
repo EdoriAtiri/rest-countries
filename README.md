@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca/hub/rest-countries-api-with-color-theme-switcher-LrYLgd9Wf/solutions)
-- Live Site URL: [Add live site URL here](https://rest-countries-eight.vercel.app/home)
+- Solution URL: [Solution URL](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca/hub/rest-countries-api-with-color-theme-switcher-LrYLgd9Wf/solutions)
+- Live Site URL: [Live site URL](https://rest-countries-eight.vercel.app/home)
 
 ## My process
 
