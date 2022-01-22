@@ -57,13 +57,13 @@ Through this project I attained a better understanding of RxJs and Observables, 
 ### Useful resources
 
 - [How To Create a Caching Service for Angular](https://betterprogramming.pub/how-to-create-a-caching-service-for-angular-bfad6cbe82b0)
-  [How to implement an Angular search filter in Angular 11 and 12](https://edupala.com/how-to-implement-an-angular-search-filter-in-angular/)
-  [Reloading Components when change in Route Params — Angular](https://medium.com/@mvivek3112/reloading-components-when-change-in-route-params-angular-deed6107c6bb)
-  [FortAwesome/angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome)
+- [How to implement an Angular search filter in Angular 11 and 12](https://edupala.com/how-to-implement-an-angular-search-filter-in-angular/)
+- [Reloading Components when change in Route Params — Angular](https://medium.com/@mvivek3112/reloading-components-when-change-in-route-params-angular-deed6107c6bb)
+- [FortAwesome/angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome)
 
 ## Author
 
-- Website - [Edor Atiri](https://edori-dev-portfolio.vercel.app/)
+- Website - [Edori Atiri](https://edori-dev-portfolio.vercel.app/)
 - Frontend Mentor - [@EdoriAtiri](https://www.frontendmentor.io/profile/EdoriAtiri)
 - Twitter - [@Reuben_iri](https://twitter.com/Reuben_iri)
 
