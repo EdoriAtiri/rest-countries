@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
   public darkMode!: any;
+  private dark: boolean = false;
   constructor() {}
 
   public toggle(): void {

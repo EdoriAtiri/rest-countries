@@ -21,9 +21,13 @@
     <!-- Flag -->
     <figure
       *ngIf="!loading"
-      class="flag md:w-1/2 md:h-96 h-60 overflow-hidden mb-8 md:mb-0 object-cover shadow-2xl"
+      class="flag md:w-1/2 sm:max-h-96 max-h-64 overflow-hidden mb-8 md:mb-0 shadow-2xl"
     >
-      <img src="{{ ctry.flag }}" alt="" />
+      <img
+        class="object-cover w-full"
+        src="{{ ctry.flag }}"
+        alt="{{ ctry.name }} Flag"
+      />
     </figure>
 
     <!-- Details -->

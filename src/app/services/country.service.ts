@@ -11,6 +11,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class CountryService {
   countriesUrl: string = 'https://restcountries.com/v2/';
+  allCountriesUrl = `${this.countriesUrl}all?fields=name,population,region,flag,capital,topLevelDomain,nativeName,population,subregion,currencies,languages,,borders`;
   allCountries: any;
   Country: any = [];
   single!: Observable<Country[]>;
@@ -42,9 +43,9 @@ export class CountryService {
     }
 
     //  carry out request again
-    const allCountriesUrl = `${this.countriesUrl}all`;
+
     this.allCountries = this.http
-      .get<Country[]>(allCountriesUrl)
+      .get<Country[]>(this.allCountriesUrl)
       .pipe(shareReplay(1), catchError(this.handleError));
     return this.allCountries;
   }
@@ -55,9 +56,9 @@ export class CountryService {
       return this.allCountries;
     }
     //  carry out request again
-    const allCountriesUrl = `${this.countriesUrl}all`;
+
     this.allCountries = this.http
-      .get<Country[]>(allCountriesUrl)
+      .get<Country[]>(this.allCountriesUrl)
       .pipe(shareReplay(1), catchError(this.handleError));
     return this.allCountries;
   }
