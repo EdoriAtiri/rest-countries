@@ -87,7 +87,9 @@
         <span *ngIf="noBorders" class="ml-2 italic"
           >This Country has no border nations</span
         >
-        <span *ngIf="!loadingBorderComplete && !noBorders" class="ml-2 italic"
+        <span
+          *ngIf="!loadingBorderComplete && !noBorders && !borderErrorMessage"
+          class="ml-2 italic"
           >Loading Borders...</span
         >
         <ul
