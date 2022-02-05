@@ -10,7 +10,7 @@ import { Country } from '../country';
 })
 export class HomeComponent implements OnInit {
   faChevronDown = faChevronDown;
-  shown: boolean = false;
+  isFiltered: boolean = false;
   countries: Country[] = [];
   regions: string[] = [
     'All',
@@ -47,10 +47,10 @@ export class HomeComponent implements OnInit {
   }
 
   toggleFilter(): void {
-    if (this.shown === false) {
-      this.shown = true;
+    if (this.isFiltered === false) {
+      this.isFiltered = true;
     } else {
-      this.shown = false;
+      this.isFiltered = false;
     }
   }
 

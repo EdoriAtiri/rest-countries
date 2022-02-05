@@ -1,21 +1,25 @@
 <main
-  class="px-8 md:px-14 pt-6 pb-14 text-[14px] relative dark:bg-darkblue-200 dark:text-white"
+  class="px-8 md:px-14 pt-6 pb-14 text-[14px] relative dark:bg-darkblue-200 dark:text-white min-h-screen"
 >
   <app-search
+    *ngIf="!errorMessage"
     class="absolute left-8 right-8 top-5 md:left-14 md:right-auto md:top-14"
   ></app-search>
 
-  <div class="absolute z-10 left-8 top-32 md:left-auto md:right-14 md:top-14">
+  <div
+    *ngIf="!errorMessage"
+    class="absolute z-10 left-8 top-32 md:left-auto md:right-14 md:top-14"
+  >
     <div
-      class="dropdown-btn w-64 shadow-md rounded bg-white dark:bg-darkblue-100 p-4 flex justify-between"
+      class="dropdown-btn w-64 shadow-md rounded bg-white dark:bg-darkblue-100 p-4 flex justify-between cursor-pointer"
       (click)="toggleFilter()"
     >
-      <p class="dropbtn">Filter by Region</p>
+      <p class="dropbtn cursor-pointer">Filter by Region</p>
       <fa-icon class="mr-1" [icon]="faChevronDown"></fa-icon>
     </div>
 
     <ul
-      *ngIf="shown"
+      *ngIf="isFiltered"
       class="dropdown-select w-64 shadow-md rounded bg-white dark:bg-darkblue-100 py-4 mt-4 space-y-2"
     >
       <li
@@ -45,7 +49,7 @@
     <!-- Error Message -->
     <div
       *ngIf="errorMessage"
-      class="grid place-items-center space-y-14 mt-32 md:col-span-4"
+      class="grid place-items-center space-y-14 md:col-span-4"
     >
       <h2 class="font-extrabold text-2xl">Error</h2>
       <img
